@@ -1,0 +1,1 @@
+web: gunicorn workout_buddy.wsgi
