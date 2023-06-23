@@ -32,8 +32,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com', 'localhost']
-#ALLOWED_HOSTS = ['8000-oile995-project4-8c7qou1ejkp.ws-eu100.gitpod.io']
+# ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['8000-oile995-project4-8c7qou1ejkp.ws-eu100.gitpod.io']
 
 
 # Application definition

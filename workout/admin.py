@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Exercise
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -14,6 +14,12 @@ class PostAdmin(SummernoteModelAdmin):
 
     def approve_workout(self, request, queryset):
         queryset.update(approved=True)
+
+@admin.register(Exercise)
+class ExerciseAdmin(SummernoteModelAdmin):
+    list_display = ('title', 'post')
+    search_fields = ('title', 'body')
+    summernote_fields = ('body')
 
 
 
