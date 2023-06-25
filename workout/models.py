@@ -10,7 +10,6 @@ class Post(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="workout_posts")
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -45,7 +44,7 @@ class Exercise(models.Model):
 
 
     def __str__(self):
-        return f" {self.title}, {self.body}"
+        return f"Exercise {self.body} by {self.title}"
 
 
 class Comment(models.Model):

@@ -1,48 +1,42 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            {% for exercise in exercises %}
-
-              <div class="checkbox">
-                <label><input type="checkbox" value="">{{exercise.title}}</label>
-              </div>
-            {% endfor %}
-
-        </div>
-    </div>
-</div>
-
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Details:</h3>
-            <div class="card-body">
-                <!-- We want a for loop inside the tags to iterate through each comment in comments -->
+        <div class="container col-12 col-md-3" id="exercise-list">
+            <div class="row g-2">
                 {% for exercise in exercises %}
-                    
-                        {% if "placeholder" in exercise.exercise_image.url %}
-                        <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-                        {% else %}
-                        <img src="{{ exercise.exercise_image.url }}" width="100%">
-                        {% endif %}
-                        
-                        {{exercise.title}}
-                        <hr>
-                        
-                        {{exercise.body}}
 
-                    
-                <!-- Our for loop ends here -->
+                <div class="checkbox">
+                    <label><input type="checkbox" value=""></label>
+                    <label class="exercise"> {{ exercise.title}}</label>
+                    <hr>
+                </div>
                 {% endfor %}
+                {% firstof exercise.exercise_completed %}
             </div>
         </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-                <!-- For later -->
+            <div class="container col-12 col-md-6" id="exercise-details">
+                    <!-- We want a for loop inside the tags to iterate through each comment in comments -->
+                    {% for exercise in exercises %}
+                        {% if exercise.title == }
+                            <h3>{{exercise.title}}</h3>
+
+                            {{exercise.body}}
+                            {% if "placeholder" in exercise.exercise_image.url %}
+                            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                            {% else %}
+                            <img src="{{ exercise.exercise_image.url }}" width="100%">
+                            {% endif %}
+                            <hr>
+                        
+                    <!-- Our for loop ends here -->
+                    {% endfor %}
             </div>
-        </div>
+            <div class="col-md-4 card mb-4  mt-3 ">
+                <div class="card-body">
+                    <!-- For later -->
+                </div>
+            </div>
     </div>
 </div>
 
