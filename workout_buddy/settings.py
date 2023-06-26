@@ -32,8 +32,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com', 'localhost']
-# ALLOWED_HOSTS = ['8000-oile995-project4-8c7qou1ejkp.ws-eu100.gitpod.io']
+# ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['8000-oile995-project4-8c7qou1ejkp.ws-eu100.gitpod.io']
 
 
 # Application definition
@@ -133,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
