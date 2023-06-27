@@ -30,3 +30,5 @@ class PostDetail(View):
                 "exercises": exercises,
             }
         )
+
+    # def get()

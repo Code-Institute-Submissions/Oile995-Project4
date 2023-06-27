@@ -5,12 +5,20 @@
         <div class="container col-12 col-md-3" id="exercise-list">
             <div class="row g-2">
                 {% for exercise in exercises %}
+                    {% if exercise.exercise_number == 1 %}
 
-                <div class="checkbox">
-                    <label><input type="checkbox" value=""></label>
-                    <label class="exercise"> {{ exercise.title}}</label>
-                    <hr>
-                </div>
+                        <div class="checkbox selected" id="{{exercise.slug}}">
+                            <label><input type="checkbox" value=""></label>
+                            <label class="exercise-label" > {{ exercise.title}}</label>
+                            <hr>
+                        </div>
+                    {% else %}
+                        <div class="checkbox" id="{{exercise.slug}}">
+                            <label><input type="checkbox" value=""></label>
+                            <label class="exercise-label" > {{ exercise.title}}</label>
+                            <hr>
+                        </div>
+                    {% endif %}
                 {% endfor %}
                 {% firstof exercise.exercise_completed %}
             </div>
@@ -18,17 +26,30 @@
             <div class="container col-12 col-md-6" id="exercise-details">
                     <!-- We want a for loop inside the tags to iterate through each comment in comments -->
                     {% for exercise in exercises %}
-                        {% if exercise.title == }
-                            <h3>{{exercise.title}}</h3>
+                        {% if exercise.exercise_number == 1 %}
+                            <div class="exercise {{exercise.slug}}">
+                                <h3>{{exercise.title}}</h3>
+                                {{exercise.body}}
+                                {% if "placeholder" in exercise.exercise_image.url %}
+                                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                                {% else %}
+                                <img src="{{ exercise.exercise_image.url }}" width="100%">
+                                {% endif %}
+                                <hr>
+                            </div>
+                        {% else %}
+                            <div class="hidden exercise {{exercise.slug}}">
+                                <h3>{{exercise.title}}</h3>
 
-                            {{exercise.body}}
-                            {% if "placeholder" in exercise.exercise_image.url %}
-                            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-                            {% else %}
-                            <img src="{{ exercise.exercise_image.url }}" width="100%">
-                            {% endif %}
-                            <hr>
-                        
+                                {{exercise.body}}
+                                {% if "placeholder" in exercise.exercise_image.url %}
+                                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                                {% else %}
+                                <img src="{{ exercise.exercise_image.url }}" width="100%">
+                                {% endif %}
+                                <hr>
+                            </div>
+                        {% endif %}
                     <!-- Our for loop ends here -->
                     {% endfor %}
             </div>

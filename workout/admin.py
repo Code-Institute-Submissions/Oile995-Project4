@@ -19,6 +19,7 @@ class PostAdmin(SummernoteModelAdmin):
 class ExerciseAdmin(SummernoteModelAdmin):
     list_display = ('title', 'post')
     search_fields = ('title', 'body')
+    prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body')
 
 

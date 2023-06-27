@@ -145,10 +145,10 @@ body {
     display:none
 }
 .selected{
-    background-color:gray
+    background-color:gray;
 }
 
-.exercise{
+.exercise-label{
     font-weight: 600;
 }
 
