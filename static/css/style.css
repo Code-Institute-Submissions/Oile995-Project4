@@ -141,16 +141,11 @@ body {
     border: none;
 }
 
-.hidden{
-    display:none
-}
+
 .selected{
     background-color:gray;
 }
 
-.exercise-label{
-    font-weight: 600;
-}
 
 #hero-image{
     height: auto;
@@ -173,6 +168,34 @@ body {
     width: 50%;
   }
 
+
+
+.nav-logo{
+    background:url("../media/Workout-buddy.png") no-repeat center center;
+    background-size: cover;
+}
+
+/* The hero image */
+.hero-image{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+#progressbar{
+    background-color: #E84610;
+    position: absolute;
+    bottom: 0;
+    width: 93%;
+    text-align: center;
+}
+
+.exercise-label{
+    font-weight: 600;
+}
+
 #exercise-list{
     background-color: #23BBBB;
     border-style: solid;
@@ -180,20 +203,55 @@ body {
     border: black;
     margin-top: 5vw;
     height: 40vw;
-
+    position: relative;
 }
 
-#exercise-details{
+.exercise-details{
     background-color: #23BBBB;
     border-style: solid;
     border-width: 5px;
     border: black;
     margin-top: 5vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.exercise{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.exercise-title{
+    width: 90%;
+    background-color: #f1f1f1;
+    margin: 5px;
+    height:5%;
+}
+
+#exercise-body{
+    background-color: white;
+    width: 90%;
+    height: 40%;
+    margin: 10px;
 
 }
 
-.nav-logo{
-    background:url("../media/Workout-buddy.png") no-repeat center center;
-    background-size: cover;
+.exercise-image{
+    width:40%;
+    margin-right:5%;
+    margin-left:5%;
+    margin-bottom:5%;
 }
 
+.exercise-muscle-group{
+    width:40%;
+    margin-right:5%;
+    margin-left:5%;
+    margin-bottom:5%;
+}
+
+.hidden{
+    display:none
+}

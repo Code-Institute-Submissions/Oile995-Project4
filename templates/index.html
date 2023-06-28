@@ -7,7 +7,7 @@
         <!-- Hero image -->
     <section id="hero-outer">
         <div id="hero-image">
-            <img class="img-responsive, center" src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="Chania" style="max-width: 100%; height: auto;"> 
+            <img class="img-responsive, hero-image" src="/static/images/banner.jpg" alt="Hero-image with workout theme" style="max-width: 100%; height: auto;"> 
           </div>
     </section>
     <div class="row">
@@ -22,7 +22,7 @@
                         <div class="image-container">
                             {% if "placeholder" in post.featured_image.url %}
                             <img class="card-img-top"
-                                src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                                src="/static/images/placeholder.jpg">
                             {% else %}
                             <img class="card-img-top" src=" {{ post.featured_image.url }}">
                             {% endif %}

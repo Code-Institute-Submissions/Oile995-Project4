@@ -19,6 +19,9 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
     approved = models.BooleanField(default=False)
+    workout_start = models.BooleanField(default=False, editable=False)
+    workout_done = models.BooleanField(default=False, editable=False)
+
 
     class Meta:
         ordering = ['-created_on']
@@ -47,8 +50,8 @@ class Exercise(models.Model):
     exercise_number = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(8)])
     body = models.TextField()
     exercise_image = CloudinaryField('image', default='placeholder')
-    exercise_video = CloudinaryField('video', default='placeholder')
-    exercise_completed = models.BooleanField(default=False)
+    exercise_muscle_group = CloudinaryField('image', default='placeholder')
+    exercise_completed = models.BooleanField(default=False, editable=False)
 
 
     class Meta:
@@ -56,7 +59,7 @@ class Exercise(models.Model):
 
 
     def __str__(self):
-        return f"Exercise {self.body} by {self.title}"
+        return f"{self.body} {self.title}"
 
 
 
