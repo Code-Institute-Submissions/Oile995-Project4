@@ -30,7 +30,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com', 'localhost','8000-oile995-project4-8c7qou1ejkp.ws-eu101.gitpod.io']
 
