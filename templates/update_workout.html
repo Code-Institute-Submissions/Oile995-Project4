@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <!-- Exercise list form -->
+            <form class="workout-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Showing the Exercise list container and progressbar -->
+                    <div class="container col-12 col-md-6" id="create-workout">
+                        <label for="form.title" class="form-label" >Workout Title:</label>
+                        {{form.title}}
+                        <hr>
+                        <label for="form.excerpt" class="form-label" >Workout description:</label>
+                        {{form.excerpt}}
+                        <hr>
+
+                        <label for="form.featured_image" class="form-label" >Featured Image:</label>
+                        {{form.featured_image}}
+                        <hr>
+                        <label for="form.status" class="form-label" >Ready for Publish?:</label>
+                        {{form.status}}
+                        <hr>
+                        <input type="submit" id="create-text" class="fadeIn sixth create-workout" value="Update Workout!">
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <h3 class="text-center">Please login or sign up to an account to be able to create a workout!</h3>
+    {% endif %}
+{%endblock%}

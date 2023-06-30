@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <!-- Exercise list form -->
+            <form class="workout-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Showing the Exercise list container and progressbar -->
+                    <div class="container col-12 col-md-6" id="create-workout">
+                        <label for="e_n" class="form-label" >Exercise number {{e_n}}:</label>
+                        <hr>
+                        <label for="form.title" class="form-label" >Exercise Title:</label>
+                        {{form.title}}
+                        <hr>
+                        <label for="form.body" class="form-label" >Exercise description:</label>
+                        {{form.body}}
+                        <hr>
+                        <label for="form.exercise_image" class="form-label" >exercise_image:</label>
+                        {{form.exercise_image}}
+                        <hr>
+                        <label for="form.exercise_muscle_group" class="form-label" >exercise_muscle_group:</label>
+                        {{form.exercise_muscle_group}}
+                        <hr>
+                        <input type="submit" id="create-text" class="fadeIn sixth create-workout" value="Update Exercise!">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <h3 class="text-center">Please login or sign up to an account to be able to make a booking</h3>
+    {% endif %}
+{%endblock%}

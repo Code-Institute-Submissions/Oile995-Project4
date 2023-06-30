@@ -225,7 +225,6 @@ body {
 
 .exercise-title{
     width: 90%;
-    background-color: #f1f1f1;
     margin: 5px;
     height:5%;
 }
@@ -233,7 +232,7 @@ body {
 #exercise-body{
     background-color: white;
     width: 90%;
-    height: 40%;
+    height: 20%;
     margin: 10px;
 
 }

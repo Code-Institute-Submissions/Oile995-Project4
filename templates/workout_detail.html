@@ -13,23 +13,17 @@
                 {% for exercise in exercises %}
                     {% if exercise.exercise_number == 1 %}
 
-                        <div class="checkbox selected" id="{{exercise.slug}}">
-                            <label><input type="checkbox" value=""></label>
-                            <label class="exercise-label" > {{ exercise.title}}</label>
+                        <div class="checkbox selected exercise-label" id="{{exercise.slug}}">
+                            <input type="checkbox" value=""> {{ exercise.title}}
                             <hr>
                         </div>
                     {% else %}
-                        <div class="checkbox" id="{{exercise.slug}}">
-                            <label><input type="checkbox" value=""></label>
-                            <label class="exercise-label" > {{ exercise.title}}</label>
+                    <div class="checkbox exercise-label" id="{{exercise.slug}}">
+                        <input type="checkbox" value=""> {{ exercise.title}}
                             <hr>
                         </div>
                     {% endif %}
                 {% endfor %}
-                <!-- {% firstof exercise.exercise_completed %} -->
-            </div>
-            <div id="progressbar">
-                progressbar
             </div>
         </div>
         <div class="container col-12 col-md-6 exercise-details">
@@ -40,6 +34,7 @@
                         <h3 class="exercise-title">{{exercise.title}}</h3>
                         <div id="exercise-body">
                             {{exercise.body}}
+                            {{exercise.exercise_number}}
                         </div>
                         
                         {% if "placeholder" in exercise.exercise_image.url %}
@@ -57,6 +52,8 @@
                     <h3 class="exercise-title">{{exercise.title}}</h3>
                     <div id="exercise-body">
                         {{exercise.body}}
+                        {{exercise.exercise_number}}
+
                     </div>
                     
                     {% if "placeholder" in exercise.exercise_image.url %}
@@ -74,10 +71,16 @@
             {% endfor %}
 
         </div>
-
-
-        <div class="container col-12 col-md-6 offset-md-8 complete-workout">
-            <button type = "submit"> Complete Workout!</button>
+        <hr>
+        <div class="container col-12 col-md-6 offset-md-1 complete-workout">
+            {% if user.is_authenticated %}
+            {% if user == workout.creator or user.is_superuser  %}
+            <div>
+                <a id="edit-button" class="btn btn-info" href="{% url 'update_workout' workout.id %}">Edit Workout</a>
+                <a id="del-button" class="btn btn-danger" href="{% url 'delete_workout' workout.id %}">Delete Recipe</a>
+            </div><br>
+            {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>

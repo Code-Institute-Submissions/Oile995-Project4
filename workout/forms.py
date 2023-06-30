@@ -14,10 +14,20 @@ class WorkoutForm(ModelForm):
             'number_of_exercises', 'status', 
             ]
 
+
 class ExerciseForm(ModelForm):
     class Meta:
         model = Exercise
         fields = [
             'title', 'body',
             'exercise_image', 'exercise_muscle_group', 
+            ]
+
+class WorkoutUpdateForm(ModelForm):
+
+    class Meta:
+        model = Workout
+        fields = [
+            'title', 'featured_image', 'excerpt',
+            'status', 
             ]
