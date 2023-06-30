@@ -15,7 +15,7 @@ class Workout(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    number_of_exercises = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(8)])
+    number_of_exercises = models.IntegerField(default=0, validators=[MinValueValidator(3), MaxValueValidator(8)])
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='workout_likes', blank=True)
     approved = models.BooleanField(default=False)

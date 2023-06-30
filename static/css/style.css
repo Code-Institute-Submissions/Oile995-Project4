@@ -286,6 +286,7 @@ input[type=submit],
 .form-label{
     text-align: center;
     display:block;
+    font-size: 2rem;
 }
 
 #create-workout{
@@ -299,4 +300,20 @@ input[type=submit],
 }
 #modules{
     background-color: white;
+}
+#delete-text{
+    width: 40%;
+    background-color: #E84610;
+    color: #1E1926;
+}
+
+#delete-text:hover {
+    color: #FDF7FF;
+}
+.go-back{
+    width: 40%;
+    font-size:  1.5vmax;
+    background-color: blue;
+    color: white;
+    text-decoration-style: none;
 }

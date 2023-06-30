@@ -14,12 +14,12 @@
                     {% if exercise.exercise_number == 1 %}
 
                         <div class="checkbox selected exercise-label" id="{{exercise.slug}}">
-                            <input type="checkbox" value=""> {{ exercise.title}}
+                            <input type="checkbox" value=""> {{ exercise.title }}
                             <hr>
                         </div>
                     {% else %}
                     <div class="checkbox exercise-label" id="{{exercise.slug}}">
-                        <input type="checkbox" value=""> {{ exercise.title}}
+                        <input type="checkbox" value=""> {{ exercise.title }}
                             <hr>
                         </div>
                     {% endif %}
@@ -77,7 +77,7 @@
             {% if user == workout.creator or user.is_superuser  %}
             <div>
                 <a id="edit-button" class="btn btn-info" href="{% url 'update_workout' workout.id %}">Edit Workout</a>
-                <a id="del-button" class="btn btn-danger" href="{% url 'delete_workout' workout.id %}">Delete Recipe</a>
+                <a id="del-button" class="btn btn-danger" href="{% url 'delete_workout' workout.id %}">Delete Workout</a>
             </div><br>
             {% endif %}
             {% endif %}

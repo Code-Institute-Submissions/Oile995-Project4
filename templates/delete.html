@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
 {% block content %}
-<h1 id="delete-workout">Delete {{workout.title}}</h1>
+<h1 id="delete-workout">Delete {{ workout.title }}</h1>
 <div class="wrapper fadeInDown" id="delete-workout-wrapper">
 <form method="POST" id="delete-workout-form" class="register-form" enctype="multipart/form-data">
     {% csrf_token %}
-    <p>Are you sure you want to delete "{{workout}}"?</p>
-    <a href="{% url 'workout_detail' workout.slug %}" id="go-back"><i class="fa-solid fa-angles-left"></i> Go Back</a>
+    <p>Are you sure you want to delete "{{ workout }}"?</p>
+    <a class="go-back" href="{% url 'workout_detail' workout.slug %}" id="go-back"><i class="fa-solid fa-angles-left"></i> Go Back</a>
     <input type="submit" id="delete-text" value="Delete">
 </form>
 </div>
-
-
 {% endblock %}

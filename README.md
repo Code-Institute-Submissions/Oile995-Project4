@@ -6,6 +6,12 @@ Fixed by remove disable static flag in settings, then load static in all templat
 - Create form page did not load No Workout matches the given query: 
 Fixed by moving path url above display workout path
 
+- if Workout has less than 3 exercises update crashes website
+Fixed by checking if parent number of exercies is less than the generic (3)-1 and if so the indexing is updated to parents number.
+
+- bug when updating workout, if statement had no else and caused return of html =None
+Fixed by changing the if logic to check if creator or superuser
+
 
 
 
