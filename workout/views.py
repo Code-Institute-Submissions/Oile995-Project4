@@ -65,35 +65,46 @@ def WorkoutCreate(request):
             messages.success(
                 request, 'You have successfully created ' + form.instance.title
                 )
-            return redirect('edit_workout')
+            forms_left = form.instance.number_of_exercises
+            parent = form.instance.pk
+            return redirect('edit_workout',pk=parent)
 
     context = {'form': form}
     return render(request, 'create_workout.html', context)
 
-def WorkoutAddExercise(request):
+
+
+
+def WorkoutAddExercise(request, pk):
     print("add extercise")
-    workout = Workout.objects.all()
+    workout = Workout.objects.get(id=pk)
+# for f in range(workout.number_of_exercises):
+    # print("forloopstarted ", f)
     form = ExerciseForm()
     if request.method == 'POST':
         form = ExerciseForm(request.POST, request.FILES)
+        print(form.errors)
         if form.is_valid():
-            form.instance.creator = request.user
+            print("form was valid")
+            form.instance.slug = form.instance.title.replace(" ", "-")
+            form.instance.exercise_number = 1
+            form.instance.exercise_completed = False
             form.save()
             messages.success(
-                request, 'You have successfully created ' + form.instance.title
+                request, 'You have successfully created ' + form.instance.title + 
+                form.instance.exercise_number
                 )
             return redirect('home')
-
-    context = {'form': form,'workout': workout}
+    context = {'form': form}
     return render(request, 'edit_workout.html', context)
 
-def workouts(request):
-    workouts = Workout.objects.all()
-    context = {'workouts': workouts}
-    return render(request, 'edit_workout.html', context)
+# def workouts(request, parent):
+#     workouts = Workout.objects.all()
+#     context = {'workouts': workouts}
+#     return render(request, 'edit_workout.html', context)
 
-def modules(request):
-    exercise_numbers = request.GET.get('workout')
-    print(exercise_numbers)
-    context = {'exercise_numbers': range(int(exercise_numbers))}
-    return render(request, 'partials/modules.html', context)
+# def modules(request):
+#     exercise_numbers = request.GET.get('workout')
+#     print(exercise_numbers)
+#     context = {'exercise_numbers': range(int(exercise_numbers))}
+#     return render(request, 'partials/modules.html', context)

@@ -9,26 +9,21 @@
                 {% csrf_token %}
                 <div class="row">
                     <!-- Showing the Exercise list container and progressbar -->
-                    <div class="container col-12 col-md-3" id="exercise-list">
-                        {% csrf_token %}
-                        <div>{{form.workout}}</div>
-                        <select class="custom-select mb-4"
-                                name="workout"
-                                hx-get="{% url 'modules' %}" 
-                                hx-trigger="change" 
-                                hx-target="#modules">
-                            <option selected>Open this select menu</option>
-                            {% for workout in workouts %}
-                                <option value="{{workout.number_of_exercises}}">{{ workout.title }}</option>
-                            {% endfor %}
-                        </select>
-                        <div id="modules">
-                            {% include 'partials/modules.html' %} 
-                        </div>
-                    </div>
-                    <div class="container col-12 col-md-6 exercise-details">
-                            <!-- We want a for loop inside the tags to iterate through each comment in comments -->
-                        
+                    <div class="container col-12 col-md-6" id="create-workout">
+                        <label for="form.title" class="form-label" >Exercise Title:</label>
+                        <input type="text" name="title" id="form.title" class="fadeIn first workout-form" placeholder="Exercise Title">
+                        <hr>
+                        <label for="form.body" class="form-label" >Exercise description:</label>
+                        <textarea name="body" id="form.body" class="fadeIn third workout-form" rows="6"
+                        placeholder="Exercise description"></textarea>
+                        <hr>
+                        <label for="form.exercise_image" class="form-label" >exercise_image:</label>
+                        <input type="file" name="exercise_image" id="form.exercise_image" class="fadeIn first workout-form" placeholder="exercise_image">
+                        <hr>
+                        <label for="form.exercise_muscle_group" class="form-label" >exercise_muscle_group:</label>
+                        <input type="file" name="exercise_muscle_group" id="form.exercise_muscle_group" class="fadeIn first workout-form" placeholder="exercise_muscle_group">
+                        <hr>
+                        <input type="submit" id="create-text" class="fadeIn sixth create-workout" value="Create Exercise!">
 
                     </div>
                 </div>

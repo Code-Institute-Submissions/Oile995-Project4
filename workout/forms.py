@@ -14,11 +14,10 @@ class WorkoutForm(ModelForm):
             'number_of_exercises', 'status', 
             ]
 
-class ExerciseForm(forms.Form):
-    workout = forms.ModelMultipleChoiceField(queryset=Workout.objects.all())
+class ExerciseForm(ModelForm):
     class Meta:
         model = Exercise
         fields = [
-            'workout','title', 'exercise_number', 'body',
+            'title', 'body',
             'exercise_image', 'exercise_muscle_group', 
             ]
