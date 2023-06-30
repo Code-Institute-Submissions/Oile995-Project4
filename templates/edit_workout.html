@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <!-- Exercise list form -->
+            <form class="workout-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Showing the Exercise list container and progressbar -->
+                    <div class="container col-12 col-md-3" id="exercise-list">
+                        {% csrf_token %}
+                        <div>{{form.workout}}</div>
+                        <select class="custom-select mb-4"
+                                name="workout"
+                                hx-get="{% url 'modules' %}" 
+                                hx-trigger="change" 
+                                hx-target="#modules">
+                            <option selected>Open this select menu</option>
+                            {% for workout in workouts %}
+                                <option value="{{workout.number_of_exercises}}">{{ workout.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="modules">
+                            {% include 'partials/modules.html' %} 
+                        </div>
+                    </div>
+                    <div class="container col-12 col-md-6 exercise-details">
+                            <!-- We want a for loop inside the tags to iterate through each comment in comments -->
+                        
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <h3 class="text-center">Please login or sign up to an account to be able to make a booking</h3>
+    {% endif %}
+{%endblock%}

@@ -252,6 +252,52 @@ body {
     margin-bottom:5%;
 }
 
+.workout-title{
+    font-weight: 800;
+    font-size: larger;
+
+}
+
 .hidden{
     display:none
+}
+
+input[type=text],
+textarea,
+input[type=number],
+input[type=file],
+input[type=email],
+input[type=password],
+input[type=submit],
+.form-control {
+    background-color: #FDF7FF;
+    border: none;
+    color: #1E1926;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.5vmax;
+    margin: 5px;
+    width: 75%;
+    margin-bottom: 1vw;
+}
+
+
+.form-label{
+    text-align: center;
+    display:block;
+}
+
+#create-workout{
+    text-align: center;
+    display:inline-block;
+    background-color: #23BBBB;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    font-weight: 900;
+    border-radius: 25px;
+}
+#modules{
+    background-color: white;
 }

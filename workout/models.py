@@ -7,17 +7,17 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
-class Post(models.Model):
+class Workout(models.Model):
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="workout_posts")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="workout_posts")
     updated_on = models.DateTimeField(auto_now=True)
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     number_of_exercises = models.IntegerField(default=0, validators=[MinValueValidator(3), MaxValueValidator(8)])
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='workout_likes', blank=True)
     approved = models.BooleanField(default=False)
     workout_start = models.BooleanField(default=False, editable=False)
     workout_done = models.BooleanField(default=False, editable=False)
@@ -44,7 +44,7 @@ class Post(models.Model):
         
 
 class Exercise(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="exercises")
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name="exercises", default="")
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
     exercise_number = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(8)])
@@ -65,7 +65,7 @@ class Exercise(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='comments', default="")
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()

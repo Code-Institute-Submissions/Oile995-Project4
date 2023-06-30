@@ -1,11 +1,24 @@
 from django import forms
 from datetime import datetime
-from .models import Post, Exercise, Comment
+from .models import Workout, Exercise, Comment
 from django.forms import ModelForm
 
 
 
-# class PostForm(forms.ModelForm):
-#     class Meta:
-#         model = Post
-#         fields = ('title','featured_image', 'excerpt',)
+class WorkoutForm(ModelForm):
+
+    class Meta:
+        model = Workout
+        fields = [
+            'title', 'featured_image', 'excerpt',
+            'number_of_exercises', 'status', 
+            ]
+
+class ExerciseForm(forms.Form):
+    workout = forms.ModelMultipleChoiceField(queryset=Workout.objects.all())
+    class Meta:
+        model = Exercise
+        fields = [
+            'workout','title', 'exercise_number', 'body',
+            'exercise_image', 'exercise_muscle_group', 
+            ]

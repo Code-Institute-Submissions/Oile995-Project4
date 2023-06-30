@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid">
+            <!-- Exercise list form -->
+            <form class="workout-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Showing the Exercise list container and progressbar -->
+                    <div class="container col-12 col-md-6" id="create-workout">
+                        <label for="form.title" class="form-label" >Workout Title:</label>
+                        <input type="text" name="title" id="form.title" class="fadeIn first workout-form" placeholder="Workout Title">
+                        <hr>
+                        <label for="form.excerpt" class="form-label" >Workout description:</label>
+                        <textarea name="excerpt" id="form.excerpt" class="fadeIn third workout-form" rows="6"
+                        placeholder="Workout description"></textarea>
+                        <hr>
+                        <label for="form.number_of_exercises" class="form-label" >Number of exercises:</label>
+                        <input type="number" name="number_of_exercises" id="form.number_of_exercises" class="fadeIn first workout-form" placeholder="Minimum 3 exercises, Maximum 8">
+                        <!-- <div class="form-group">
+                            <label for="form.number_of_exercises" class="form-label">Example select</label>
+                            <select class="form-control" id="form.number_of_exercises" type="number">
+                              <option value=3>3</option>
+                              <option value=4>4</option>
+                              <option value=5>5</option>
+                              <option value=6>6</option>
+                              <option value=7>7</option>
+                              <option value=8>8</option>
+                            </select>
+                          </div> -->
+                        <hr>
+                        <label for="form.featured_image" class="form-label" >Featured Image:</label>
+                        <input type="file" name="featured_image" id="form.featured_image" class="fadeIn first workout-form" placeholder="Featured image">
+                        <hr>
+                        <label for="form.status" class="form-label" >Ready for Publish?:</label>
+                        <input type="number" name="status" id="form.status" class="fadeIn first workout-form" placeholder="0 for Draft, 1 for Publish">
+                        <hr>
+                        <input type="submit" id="create-text" class="fadeIn sixth create-workout" value="Create Workout!">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <h3 class="text-center">Please login or sign up to an account to be able to create a workout!</h3>
+    {% endif %}
+{%endblock%}

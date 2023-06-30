@@ -6,6 +6,10 @@
         <!-- Showing the Exercise list container and progressbar -->
         <div class="container col-12 col-md-3" id="exercise-list">
             <div class="row g-2">
+                <div class="workout-title">
+                    {{ workout.title }}:
+                </div>
+                <hr>
                 {% for exercise in exercises %}
                     {% if exercise.exercise_number == 1 %}
 
