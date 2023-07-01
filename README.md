@@ -2,7 +2,7 @@
 
 ![am I responsive screenshot](/media/Responsive-buddy.PNG)
 
-## A restaurant website.
+## A Workout helper website.
 > A Workout-tracker/helper website showcasing workouts created by either any User or Admin. The site allows users to create a profile and in turn create, read, edit and delete workouts they have created. 
 
 
@@ -590,16 +590,8 @@ While USER STORY: Events#2 has some parts completed in terms of displaying exerc
 ---
 
 <a name="bugs"></a>
+
 ## **Bugs**
-
-#### Django templating bug
-![W3 Validation checker](static/images/readme_images/w3validationerrorshtml.png)
-
-- When I ran my code through the w3 html validator I got over 40 errors that I did not expect.
-- Upon review I could see Django was submitting fresh <p> Tags around my templated content for menu descriptions.
-- I removed the existing <p> Tags from my HTML code and this issue was cleared.
-
----
 
 #### Images does not load in Heroku.
 
