@@ -315,5 +315,21 @@ input[type=submit],
     font-size:  1.5vmax;
     background-color: blue;
     color: white;
-    text-decoration-style: none;
+    text-decoration:none;
+}
+
+/* 404 & 500 PAGES */
+/* Code source, https://github.com/leonardo-simeone/venezuelan-food-cookbook/tree/main */
+
+#wrapper-404 {
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+#image-wrapper-404 {
+    width: 80%;
+}
+
+#image-404 {
+    border-radius: 10px;
 }

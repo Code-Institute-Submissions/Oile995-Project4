@@ -8,12 +8,12 @@ class WorkoutAdmin(SummernoteModelAdmin):
     list_display = ('title', 'slug', 'status', 'created_on')
     search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}
-    list_filter = ('status', 'created_on')
+    list_filter = ('status', 'created_on', 'approved')
     summernote_fields = ('content')
     actions = ['approve_workout']
 
     def approve_workout(self, request, queryset):
-        queryset.update(approved=True)
+        queryset.update(approved=True,status=1)
 
 @admin.register(Exercise)
 class ExerciseAdmin(SummernoteModelAdmin):

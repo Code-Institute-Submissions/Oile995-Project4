@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-
+# Display Profile page and the workouts made by User
 class Profile(View):
 
     def get(self, request, *args, **kwargs):
@@ -57,16 +57,17 @@ def WorkoutCreate(request):
     form = WorkoutForm()
     if request.method == 'POST':
         form = WorkoutForm(request.POST, request.FILES)
-        form.instance.status = True
         print(form.errors)
         if form.is_valid():
             form.instance.slug = form.instance.title.replace(" ", "-")
             form.instance.creator = request.user
             form.instance.created_on = datetime.datetime.now()
+            form.instance.status = False
             form.instance.approved = False
             form.save()
             messages.success(
-                request, 'You have successfully created ' + form.instance.title
+                request, 'You have successfully created ' + form.instance.title +
+                'Please await admin to approve content'
                 )
             parent = form.instance.pk
             exercise_n = form.instance.number_of_exercises +1
@@ -159,7 +160,7 @@ def updateExercise(request, pk, e_n):
 def deleteWorkout(request, pk):
     print("IS thsi EVEN LOADING!!!!!!!!!")
     workout = Workout.objects.get(id=pk)
-    if workout.creator != request.user:
+    if workout.creator == request.user or request.user.is_superuser:
         if request.user.is_superuser:
             if request.method == 'POST':
                 workout.delete()
@@ -174,3 +175,6 @@ def deleteWorkout(request, pk):
                 request, "You don't have permission to delete this recipe"
                 )
             return redirect('home')
+
+def check():
+    pass

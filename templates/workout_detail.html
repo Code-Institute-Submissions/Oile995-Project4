@@ -12,16 +12,15 @@
                 <hr>
                 {% for exercise in exercises %}
                     {% if exercise.exercise_number == 1 %}
-
                         <div class="checkbox selected exercise-label" id="{{exercise.slug}}">
                             <input type="checkbox" value=""> {{ exercise.title }}
                             <hr>
                         </div>
                     {% else %}
-                    <div class="checkbox exercise-label" id="{{exercise.slug}}">
-                        <input type="checkbox" value=""> {{ exercise.title }}
-                            <hr>
-                        </div>
+                        <div class="checkbox exercise-label" id="{{exercise.slug}}">
+                            <input type="checkbox" value=""> {{ exercise.title }}
+                                <hr>
+                            </div>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -38,38 +37,42 @@
                         </div>
                         
                         {% if "placeholder" in exercise.exercise_image.url %}
-                        <img class="exercise-image" src="{% static 'images/placeholder.jpg' %}" width="40%">
-                        <img class="exercise-muscle-group" src="{% static 'images/placeholder.jpg' %}" width="40%">
+                            <img class="exercise-image" src="{% static 'images/placeholder.jpg' %}" width="40%" alt="Placeholder image of barbell">
                         {% else %}
-                        <img class="exercise-image" src="{{ exercise.exercise_image.url }}" width="40%">
-                        <img class="exercise-muscle-group" src="{{ exercise.exercise_muscle_group.url }}" width="40%">
+                            <img class="exercise-image" src="{{ exercise.exercise_image.url }}" width="40%" alt="User choosen workout image">
+                        {% endif %}
+                        {% if "placeholder" in exercise.exercise_muscle_group.url %}
+                            <img class="exercise-muscle-group" src="{% static 'images/placeholder.jpg' %}" width="40%" alt="Placeholder image of barbell">
+                        {% else %}
+                            <img class="exercise-muscle-group" src="{{ exercise.exercise_muscle_group.url }}" width="40%" alt="User choosen workout image">
                         {% endif %}
                         <hr>
 
                     </div>
                 {% else %}
-                <div class="hidden exercise {{exercise.slug}}">
-                    <h3 class="exercise-title">{{exercise.title}}</h3>
-                    <div id="exercise-body">
-                        {{exercise.body}}
-                        {{exercise.exercise_number}}
+                    <div class="hidden exercise {{exercise.slug}}">
+                        <h3 class="exercise-title">{{exercise.title}}</h3>
+                        <div id="exercise-body">
+                            {{exercise.body}}
+                            {{exercise.exercise_number}}
 
+                        </div>
+                        
+                            {% if "placeholder" in exercise.exercise_image.url %}
+                                <img class="exercise-image" src="{% static 'images/placeholder.jpg' %}" width="40%" alt="Placeholder image of barbell">
+                            {% else %}
+                                <img class="exercise-image" src="{{ exercise.exercise_image.url }}" width="40%" alt="User choosen workout image">
+                            {% endif %}
+                            {% if "placeholder" in exercise.exercise_muscle_group.url %}
+                                <img class="exercise-muscle-group" src="{% static 'images/placeholder.jpg' %}" width="40%" alt="Placeholder image of barbell">
+                            {% else %}
+                                <img class="exercise-muscle-group" src="{{ exercise.exercise_muscle_group.url }}" width="40%" alt="User choosen workout image">
+                            {% endif %}
+                        <hr>
                     </div>
-                    
-                    {% if "placeholder" in exercise.exercise_image.url %}
-                        <img class="exercise-image" src="{% static 'images/placeholder.jpg' %}" width="40%">
-                        <img class="exercise-muscle-group" src="{% static 'images/placeholder.jpg' %}" width="40%">
-                    {% else %}
-                        <img class="exercise-image" src="{{ exercise.exercise_image.url }}" width="40%">
-                        <img class="exercise-muscle-group" src="{{ exercise.exercise_muscle_group.url }}" width="40%">
-                    {% endif %}
-                    <hr>
-
-                </div>
                 {% endif %}
                 <!-- Our for loop ends here -->
             {% endfor %}
-
         </div>
         <hr>
         <div class="container col-12 col-md-6 offset-md-1 complete-workout">

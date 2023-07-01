@@ -12,6 +12,9 @@ Fixed by checking if parent number of exercies is less than the generic (3)-1 an
 - bug when updating workout, if statement had no else and caused return of html =None
 Fixed by changing the if logic to check if creator or superuser
 
+- bug user img didnt load if placeholder in first image in workout details.
+fixed by changing and adding if logic in html
+
 
 
 

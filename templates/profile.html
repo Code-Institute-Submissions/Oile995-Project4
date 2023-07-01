@@ -25,9 +25,9 @@
                         <div class="image-container">
                             {% if "placeholder" in query.featured_image.url %}
                             <img class="card-img-top"
-                                src="{% static 'images/placeholder.jpg' %}">
+                                src="{% static 'images/placeholder.jpg' %}" alt="Placeholder image of barbell">
                             {% else %}
-                            <img class="card-img-top" src=" {{ query.featured_image.url }}">
+                            <img class="card-img-top" src=" {{ query.featured_image.url }}" alt="User choosen workout image">
                             {% endif %}
                             <div class="image-flash">
                                 <p class="author">Creator: {{ query.creator }}</p>

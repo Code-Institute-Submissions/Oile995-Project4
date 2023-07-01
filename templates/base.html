@@ -91,6 +91,7 @@
     </footer>
     
     {% block js %}
+    <script src="{% static 'js/script.js' %}"></script>
     <script>
         setTimeout(function () {
             let messages = document.getElementById('msg');
@@ -98,7 +99,6 @@
             alert.close();
         }, 2000);
     </script>
-    <script src="{% static 'js/script.js' %}"></script>
     {% endblock %}
 
 </body>

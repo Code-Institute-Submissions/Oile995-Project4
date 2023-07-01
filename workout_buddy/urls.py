@@ -22,3 +22,6 @@ urlpatterns = [
     path('', include('workout.urls'), name='workout_urls'),
     path('accounts/', include('allauth.urls')),
 ]
+
+handler404 = "workout_buddy.views.handler404"
+handler500 = "workout_buddy.views.handler500"

@@ -1,6 +1,4 @@
 
-const selected = document.getElementsByClassName("selected");
-const exercise = document.getElementsByClassName("exercise")
 const checkboxes = document.getElementsByClassName("checkbox");
 const elements = document.querySelectorAll('*');
 
@@ -18,9 +16,9 @@ function selectedExercise(event){
     elements.forEach((element) => {
     element.classList.remove('selected');
     });
-    event.target.classList.add("selected")
-    console.log(event.target.id)
-    exercise_slug = event.target.id
+    event.target.classList.add("selected");
+    console.log(event.target.id);
+    let exercise_slug = event.target.id;
     showExercise(exercise_slug);
 }
 
@@ -31,11 +29,10 @@ function showExercise(exercise_slug){
         exercise.classList.add('hidden');
         });
     if(collection[0].classList.contains("hidden")){
-        collection[0].classList.remove("hidden")
+        collection[0].classList.remove("hidden");
 
     }
     else{
-        collection[0].classList.add("hidden")
+        collection[0].classList.add("hidden");
     }
 }
-

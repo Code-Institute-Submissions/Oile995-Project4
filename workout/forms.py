@@ -11,7 +11,7 @@ class WorkoutForm(ModelForm):
         model = Workout
         fields = [
             'title', 'featured_image', 'excerpt',
-            'number_of_exercises', 'status', 
+            'number_of_exercises',  
             ]
 
 

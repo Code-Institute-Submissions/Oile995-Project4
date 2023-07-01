@@ -6,11 +6,11 @@
 <div class="container-fluid">
     
         <!-- Hero image -->
-    <section id="hero-outer">
+    <div id="hero-outer">
         <div id="hero-image">
             <img class="img-responsive, hero-image" src="{% static 'images/banner.png' %}" alt="Hero-image with workout theme" style="max-width: 100%; height: auto;"> 
           </div>
-    </section>
+        </div>
     <div class="row">
 
         <!-- Blog Entries Column -->
@@ -23,9 +23,9 @@
                         <div class="image-container">
                             {% if "placeholder" in workout.featured_image.url %}
                             <img class="card-img-top"
-                                src="{% static 'images/placeholder.jpg' %}">
+                                src="{% static 'images/placeholder.jpg' %}" alt="Placeholder image of a barbell">
                             {% else %}
-                            <img class="card-img-top" src=" {{ workout.featured_image.url }}">
+                            <img class="card-img-top" src=" {{ workout.featured_image.url }}" alt="User choosen workout image">
                             {% endif %}
                             <div class="image-flash">
                                 <p class="author">Author: {{ workout.creator }}</p>
