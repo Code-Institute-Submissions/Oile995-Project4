@@ -33,7 +33,7 @@
                                 <p class="author">Creator: {{ query.creator }}</p>
                             </div>
                         </div>
-                        <a href="{% url 'workout_detail' query.slug %}" class="workout-link">
+                        <a href="{% url 'my_workout_detail' query.slug %}" class="workout-link">
                             <h2 class="card-title">{{ query.title }}</h2>
                             <p class="card-text">{{ query.excerpt }}</p>
                         </a>

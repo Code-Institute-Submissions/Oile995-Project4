@@ -333,3 +333,10 @@ input[type=submit],
 #image-404 {
     border-radius: 10px;
 }
+#form-error {
+    color: #FDF7FF !important;
+    background-color: #9B1700 !important;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+}

@@ -11,9 +11,8 @@ urlpatterns = [
     path('<pk>/<e_n>/update', views.updateExercise, name='update_exercises'),
     path('create_workout/', views.WorkoutCreate, name='create_workout'),
     path('<slug:slug>/', views.WorkoutDetail.as_view(), name='workout_detail'),
+    path('my_workout/<slug:slug>/', views.MyWorkoutDetail.as_view(), name='my_workout_detail'),
     path('', views.WorkoutList.as_view(), name='home'),
-    path('check',views.check,name='check'),
-
 
 
 ]

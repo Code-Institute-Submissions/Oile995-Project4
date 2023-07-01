@@ -16,13 +16,7 @@ class Profile(View):
         print(queryset)
         paginate_by = 3
 
-        return render(
-            request,
-            'profile.html',
-            {
-                "queryset": queryset,
-            }
-        )
+        return render(request,'profile.html',{"queryset": queryset,})
 
 # Display Workout list Homescreen and workout details
 
@@ -38,7 +32,6 @@ class WorkoutDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Workout.objects.filter(status=1)
         workout = get_object_or_404(queryset, slug=slug)
-        comments = workout.comments.filter(approved=True).order_by('created_on')
         exercises = workout.exercises.order_by('exercise_number')
 
         return render(
@@ -46,7 +39,21 @@ class WorkoutDetail(View):
             "workout_detail.html",
             {
                 "workout": workout,
-                "comments": comments,
+                "exercises": exercises,
+            }
+        )
+class MyWorkoutDetail(View):
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Workout.objects.filter(creator=request.user)
+        workout = get_object_or_404(queryset, slug=slug)
+        exercises = workout.exercises.order_by('exercise_number')
+
+        return render(
+            request,
+            "workout_detail.html",
+            {
+                "workout": workout,
                 "exercises": exercises,
             }
         )
@@ -72,6 +79,11 @@ def WorkoutCreate(request):
             parent = form.instance.pk
             exercise_n = form.instance.number_of_exercises +1
             return redirect('add_exercises',pk=parent, e_n=exercise_n)
+        # else:
+        #     messages.error(
+        #         request, 'Warning, please alter your input ' + form.errors +
+        #         'Please try again!'
+        #         )
 
     context = {'form': form}
     return render(request, 'create_workout.html', context)
@@ -175,6 +187,3 @@ def deleteWorkout(request, pk):
                 request, "You don't have permission to delete this recipe"
                 )
             return redirect('home')
-
-def check():
-    pass
