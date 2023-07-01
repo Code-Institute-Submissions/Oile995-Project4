@@ -28,7 +28,7 @@
                             <img class="card-img-top" src=" {{ workout.featured_image.url }}" alt="User choosen workout image">
                             {% endif %}
                             <div class="image-flash">
-                                <p class="author">Author: {{ workout.creator }}</p>
+                                <p class="author">Creator: {{ workout.creator }}</p>
                             </div>
                         </div>
                         <a href="{% url 'workout_detail' workout.slug %}" class="workout-link">

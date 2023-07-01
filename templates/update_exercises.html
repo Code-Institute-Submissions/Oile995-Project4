@@ -4,6 +4,9 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div class="container-fluid">
+            <div id="form-error">
+                {{form.errors}}
+            </div>
             <!-- Exercise list form -->
             <form class="workout-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

@@ -64,7 +64,6 @@ def WorkoutCreate(request):
     form = WorkoutForm()
     if request.method == 'POST':
         form = WorkoutForm(request.POST, request.FILES)
-        print(form.errors)
         if form.is_valid():
             form.instance.slug = form.instance.title.replace(" ", "-")
             form.instance.creator = request.user
@@ -79,12 +78,6 @@ def WorkoutCreate(request):
             parent = form.instance.pk
             exercise_n = form.instance.number_of_exercises +1
             return redirect('add_exercises',pk=parent, e_n=exercise_n)
-        # else:
-        #     messages.error(
-        #         request, 'Warning, please alter your input ' + form.errors +
-        #         'Please try again!'
-        #         )
-
     context = {'form': form}
     return render(request, 'create_workout.html', context)
 
@@ -95,7 +88,6 @@ def WorkoutAddExercise(request, pk, e_n):
     form = ExerciseForm()
     if request.method == 'POST':
         form = ExerciseForm(request.POST, request.FILES)
-        print(form.errors)
         if form.is_valid():
             form.instance.workout = workout
             form.instance.slug = form.instance.title.replace(" ", "-")
@@ -122,7 +114,6 @@ def updateWorkout(request, pk):
         form = WorkoutUpdateForm(instance=workout_object)
         if request.method == 'POST':
             form = WorkoutUpdateForm(request.POST, request.FILES, instance=workout_object)
-            print(form.errors)
             if form.is_valid():
                 form.save()
                 messages.success(
@@ -145,12 +136,9 @@ def updateExercise(request, pk, e_n):
         return redirect('home')
     e_n = int(e_n)
     if e_n > int(parent):
-        print("if worked")
         e_n = int(parent)-1
-    print("after if")
     excercise_object = Exercise.objects.filter(workout__id=pk)
     print(excercise_object)
-    print("is EN:", e_n)
     excercise_object= excercise_object[e_n]
     form = ExerciseForm(instance=excercise_object)
     if request.method == 'POST':
@@ -170,20 +158,18 @@ def updateExercise(request, pk, e_n):
 # Delete forms view
 
 def deleteWorkout(request, pk):
-    print("IS thsi EVEN LOADING!!!!!!!!!")
     workout = Workout.objects.get(id=pk)
     if workout.creator == request.user or request.user.is_superuser:
-        if request.user.is_superuser:
-            if request.method == 'POST':
-                workout.delete()
-                messages.success(
-                    request, 'You have successfully deleted ' + workout.title
-                    )
-                return redirect('home')
-
-            return render(request, 'delete.html', {'workout': workout})
-        else:
-            messages.error(
-                request, "You don't have permission to delete this recipe"
+        if request.method == 'POST':
+            workout.delete()
+            messages.success(
+                request, 'You have successfully deleted ' + workout.title
                 )
             return redirect('home')
+
+        return render(request, 'delete.html', {'workout': workout})
+    else:
+        messages.error(
+            request, "You don't have permission to delete this Workout"
+            )
+        return redirect('home')

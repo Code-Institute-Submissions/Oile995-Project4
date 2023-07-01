@@ -4,6 +4,9 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div class="container-fluid">
+            <div id="form-error">
+                {{form.errors}}
+            </div>
             <!-- Exercise list form -->
             <form class="workout-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -19,29 +22,14 @@
                         <hr>
                         <label for="form.number_of_exercises" class="form-label" >Number of exercises:</label>
                         <input type="number" name="number_of_exercises" id="form.number_of_exercises" class="fadeIn first workout-form" placeholder="Minimum 3 exercises, Maximum 8">
-                        <!-- <div class="form-group">
-                            <label for="form.number_of_exercises" class="form-label">Example select</label>
-                            <select class="form-control" id="form.number_of_exercises" type="number">
-                              <option value=3>3</option>
-                              <option value=4>4</option>
-                              <option value=5>5</option>
-                              <option value=6>6</option>
-                              <option value=7>7</option>
-                              <option value=8>8</option>
-                            </select>
-                          </div> -->
                         <hr>
                         <label for="form.featured_image" class="form-label" >Featured Image:</label>
                         <input type="file" name="featured_image" id="form.featured_image" class="fadeIn first workout-form" placeholder="Featured image">
                         <hr>
                         <input type="submit" id="create-text" class="fadeIn sixth create-workout" value="Create Workout!">
-
                     </div>
                 </div>
             </form>
-            <div id="form-error">
-                {{form.errors}}
-              </div>
         </div>
     {% else %}
         <h3 class="text-center">Please login or sign up to an account to be able to create a workout!</h3>

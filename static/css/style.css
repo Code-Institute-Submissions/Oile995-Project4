@@ -141,9 +141,10 @@ body {
     border: none;
 }
 
+/*After template CSS below here, either homemade or reused from other exampel projects*/
 
 .selected{
-    background-color:gray;
+    background-color:yellow;
 }
 
 
@@ -177,6 +178,8 @@ body {
 
 /* The hero image */
 .hero-image{
+    height:auto;
+    width: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     background-position: center;
     background-repeat: no-repeat;
@@ -184,34 +187,21 @@ body {
     position: relative;
   }
 
-#progressbar{
-    background-color: #E84610;
-    position: absolute;
-    bottom: 0;
-    width: 93%;
-    text-align: center;
-}
-
 .exercise-label{
     font-weight: 600;
 }
 
 #exercise-list{
     background-color: #23BBBB;
-    border-style: solid;
-    border-width: 5px;
-    border: black;
     margin-top: 5vw;
-    height: 40vw;
+    height: auto;
     position: relative;
 }
 
 .exercise-details{
     background-color: #23BBBB;
-    border-style: solid;
-    border-width: 5px;
-    border: black;
     margin-top: 5vw;
+    height: auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -232,7 +222,7 @@ body {
 #exercise-body{
     background-color: white;
     width: 90%;
-    height: 20%;
+    height: auto;
     margin: 10px;
 
 }
@@ -254,7 +244,6 @@ body {
 .workout-title{
     font-weight: 800;
     font-size: larger;
-
 }
 
 .hidden{
@@ -340,3 +329,5 @@ input[type=submit],
     margin: 0 auto;
     border-radius: 5px;
 }
+
+

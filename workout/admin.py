@@ -13,7 +13,7 @@ class WorkoutAdmin(SummernoteModelAdmin):
     actions = ['approve_workout']
 
     def approve_workout(self, request, queryset):
-        queryset.update(approved=True,status=1)
+        queryset.update(approved=True)
 
 @admin.register(Exercise)
 class ExerciseAdmin(SummernoteModelAdmin):

@@ -4,6 +4,9 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div class="container-fluid">
+            <div id="form-error">
+                {{form.errors}}
+            </div>
             <!-- Exercise list form -->
             <form class="workout-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -16,7 +19,6 @@
                         <label for="form.excerpt" class="form-label" >Workout description:</label>
                         {{form.excerpt}}
                         <hr>
-
                         <label for="form.featured_image" class="form-label" >Featured Image:</label>
                         {{form.featured_image}}
                         <hr>
