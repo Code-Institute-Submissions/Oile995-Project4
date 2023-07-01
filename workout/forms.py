@@ -4,7 +4,6 @@ from .models import Workout, Exercise
 from django.forms import ModelForm
 
 
-
 class WorkoutForm(ModelForm):
     """
     Function handle the workout form
@@ -15,7 +14,7 @@ class WorkoutForm(ModelForm):
         model = Workout
         fields = [
             'title', 'featured_image', 'excerpt',
-            'number_of_exercises',  
+            'number_of_exercises',
             ]
 
 
@@ -29,8 +28,9 @@ class ExerciseForm(ModelForm):
         model = Exercise
         fields = [
             'title', 'body',
-            'exercise_image', 'exercise_muscle_group', 
+            'exercise_image', 'exercise_muscle_group',
             ]
+
 
 class WorkoutUpdateForm(ModelForm):
     """
@@ -44,5 +44,5 @@ class WorkoutUpdateForm(ModelForm):
         model = Workout
         fields = [
             'title', 'featured_image', 'excerpt',
-            'status', 
+            'status',
             ]

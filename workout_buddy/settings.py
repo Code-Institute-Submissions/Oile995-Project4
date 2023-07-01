@@ -16,7 +16,7 @@ import dj_database_url
 from django.contrib.messages import constants as messages
 
 if os.path.isfile('env.py'):
-   import env
+    import env
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,7 +32,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com', 'localhost','8000-oile995-project4-8c7qou1ejkp.ws-eu101.gitpod.io']
+ALLOWED_HOSTS = ['workout-buddie-94d99620166c.herokuapp.com',
+                 'localhost',
+                 '8000-oile995-project4-8c7qou1ejkp.ws-eu101.gitpod.io']
 
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -58,8 +60,8 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-LOGIN_REDIRECT_URL ='/'
-LOGOUT_REDIRECT_URL ='/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-info',
@@ -100,19 +102,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'workout_buddy.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
-
 
 
 # Password validation
@@ -153,7 +145,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
@@ -163,4 +155,3 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-

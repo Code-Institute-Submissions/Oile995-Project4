@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+
 # Display Profile page and the workouts made by User
 class Profile(View):
     """
@@ -16,12 +17,14 @@ class Profile(View):
     https://github.com/Code-Institute-Solutions/Django3blog
     """
     def get(self, request, *args, **kwargs):
-        queryset = Workout.objects.filter(creator = request.user)
+        queryset = Workout.objects.filter(creator=request.user)
         paginate_by = 3
 
-        return render(request,'profile.html',{"queryset": queryset,})
+        return render(request, 'profile.html', {"queryset": queryset, })
+
 
 # Display Workout list Homescreen and workout details
+
 
 class WorkoutList(generic.ListView):
     """
@@ -55,6 +58,8 @@ class WorkoutDetail(View):
                 "exercises": exercises,
             }
         )
+
+
 class MyWorkoutDetail(View):
     """
     Function handle the display detail view of all workouts
@@ -76,7 +81,8 @@ class MyWorkoutDetail(View):
             }
         )
 
-#Create forms section   
+
+# Create forms section
 
 def WorkoutCreate(request):
     """
@@ -97,12 +103,13 @@ def WorkoutCreate(request):
             form.instance.approved = False
             form.save()
             messages.success(
-                request, 'You have successfully created ' + form.instance.title +
+                request, 'You have successfully created ' +
+                form.instance.title +
                 'Please await admin to approve content'
                 )
             parent = form.instance.pk
-            exercise_n = form.instance.number_of_exercises +1
-            return redirect('add_exercises',pk=parent, e_n=exercise_n)
+            exercise_n = form.instance.number_of_exercises + 1
+            return redirect('add_exercises', pk=parent, e_n=exercise_n)
     context = {'form': form}
     return render(request, 'create_workout.html', context)
 
@@ -127,15 +134,17 @@ def WorkoutAddExercise(request, pk, e_n):
             form.instance.exercise_completed = False
             form.save()
             messages.success(
-                request, 'You have successfully created ' + form.instance.title + 
+                request, 'You have successfully created ' +
+                form.instance.title +
                 str(form.instance.exercise_number)
                 )
             exercise_n = e_n-1
             return redirect('add_exercises', pk=pk, e_n=exercise_n)
     if e_n == 1:
         return redirect('home')
-    context = {'form': form, "e_n":e_n-1}
+    context = {'form': form, "e_n": e_n - 1}
     return render(request, 'add_exercises.html', context)
+
 
 # Update forms section
 
@@ -151,13 +160,15 @@ def updateWorkout(request, pk):
     if workout_object.creator == request.user or request.user.is_superuser:
         form = WorkoutUpdateForm(instance=workout_object)
         if request.method == 'POST':
-            form = WorkoutUpdateForm(request.POST, request.FILES, instance=workout_object)
+            form = WorkoutUpdateForm(request.POST, request.FILES,
+                                     instance=workout_object)
             if form.is_valid():
                 form.save()
                 messages.success(
-                    request, 'You have successfully updated ' + form.instance.title
+                    request, 'You have successfully updated ' +
+                    form.instance.title
                     )
-                e_n = form.instance.number_of_exercises -1
+                e_n = form.instance.number_of_exercises - 1
                 return redirect('update_exercises', pk=pk, e_n=e_n)
         context = {'form': form}
         return render(request, 'update_workout.html', context)
@@ -166,7 +177,7 @@ def updateWorkout(request, pk):
             request, "You don't have permission to update this Workout"
             )
         return redirect('home')
-    
+
 
 def updateExercise(request, pk, e_n):
     """
@@ -183,10 +194,11 @@ def updateExercise(request, pk, e_n):
     if e_n > int(parent):
         e_n = int(parent)-1
     excercise_object = Exercise.objects.filter(workout__id=pk)
-    excercise_object= excercise_object[e_n]
+    excercise_object = excercise_object[e_n]
     form = ExerciseForm(instance=excercise_object)
     if request.method == 'POST':
-        form = ExerciseForm(request.POST, request.FILES, instance=excercise_object)
+        form = ExerciseForm(request.POST, request.FILES,
+                            instance=excercise_object)
         if form.is_valid():
             form.save()
             messages.success(

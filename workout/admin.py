@@ -20,6 +20,7 @@ class WorkoutAdmin(SummernoteModelAdmin):
     def approve_workout(self, request, queryset):
         queryset.update(approved=True)
 
+
 @admin.register(Exercise)
 class ExerciseAdmin(SummernoteModelAdmin):
     """

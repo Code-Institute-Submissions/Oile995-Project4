@@ -4,13 +4,14 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
-
 STATUS = ((0, "Draft"), (1, "Published"))
+
 
 class Workout(models.Model):
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="workout_posts")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE,
+                                related_name="workout_posts")
     updated_on = models.DateTimeField(auto_now=True)
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
@@ -23,11 +24,12 @@ class Workout(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return self.title 
-        
+        return self.title
+
 
 class Exercise(models.Model):
-    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name="exercises", default="")
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE,
+                                related_name="exercises", default="")
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
     exercise_number = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(8)])
@@ -37,9 +39,7 @@ class Exercise(models.Model):
     exercise_completed = models.BooleanField(default=False, editable=False)
 
     class Meta:
-            ordering = ['exercise_number']
+        ordering = ['exercise_number']
 
     def __str__(self):
         return f"{self.body} {self.title}"
-
-

@@ -23,6 +23,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 ]
 
-#Error handling code taken from https://github.com/leonardo-simeone/venezuelan-food-cookbook/tree/main 
+# Error handling code taken from
+# https://github.com/leonardo-simeone/venezuelan-food-cookbook/tree/main
+
 handler404 = "workout_buddy.views.handler404"
 handler500 = "workout_buddy.views.handler500"
