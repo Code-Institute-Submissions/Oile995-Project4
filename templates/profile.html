@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <h4>My Workouts:</h4>
-        <!-- Blog Entries Column -->
+        <!-- My Workouts -->
         <div class="col-12 mt-3 left">
             <div class="row">
             {% for query in queryset %}
@@ -35,9 +35,8 @@
                             <h2 class="card-title">{{ query.title }}</h2>
                             <p class="card-text">{{ query.excerpt }}</p>
                         </a>
-                        <hr />
-                        <p class="card-text text-muted h6">{{ query.created_on}} <i class="far fa-heart"></i>
-                            {{ query.number_of_likes }}</p>
+                        <hr>
+                        <p class="card-text text-muted h6">{{ query.created_on}} <i class="far fa-heart"></i></p>
                     </div>
                 </div>
             </div>

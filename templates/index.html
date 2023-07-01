@@ -13,7 +13,7 @@
         </div>
     <div class="row">
 
-        <!-- Blog Entries Column -->
+        <!-- Workout Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
             {% for workout in workout_list %}
@@ -35,9 +35,8 @@
                             <h2 class="card-title">{{ workout.title }}</h2>
                             <p class="card-text">{{ workout.excerpt }}</p>
                         </a>
-                        <hr />
-                        <p class="card-text text-muted h6">{{ workout.created_on}} <i class="far fa-heart"></i>
-                            {{ workout.number_of_likes }}</p>
+                        <hr>
+                        <p class="card-text text-muted h6">{{ workout.created_on}} <i class="far fa-heart"></i></p>
                     </div>
                 </div>
             </div>

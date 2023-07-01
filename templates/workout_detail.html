@@ -25,9 +25,10 @@
                 {% endfor %}
             </div>
         </div>
+        <!-- Showing selected Exercise details on right side -->
         <div class="container col-12 col-md-6 exercise-details">
-                <!-- We want a for loop inside the tags to iterate through each comment in comments -->
             {% for exercise in exercises %}
+                <!-- First Exercise is auto marked as selected and rest hidden -->
                 {% if exercise.exercise_number == 1 %}
                     <div class="exercise {{exercise.slug}}">
                         <h3 class="exercise-title">{{exercise.title}}</h3>
@@ -55,9 +56,7 @@
                         <div id="exercise-body">
                             {{exercise.body}}
                             {{exercise.exercise_number}}
-
                         </div>
-                        
                             {% if "placeholder" in exercise.exercise_image.url %}
                                 <img class="exercise-image" src="{% static 'images/placeholder.jpg' %}" width="40%" alt="Placeholder image of barbell">
                             {% else %}

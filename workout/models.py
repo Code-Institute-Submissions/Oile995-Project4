@@ -17,30 +17,13 @@ class Workout(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     number_of_exercises = models.IntegerField(default=0, validators=[MinValueValidator(3), MaxValueValidator(8)])
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name='workout_likes', blank=True)
     approved = models.BooleanField(default=False)
-    workout_start = models.BooleanField(default=False, editable=False)
-    workout_done = models.BooleanField(default=False, editable=False)
-
 
     class Meta:
         ordering = ['-created_on']
 
-
     def __str__(self):
         return self.title 
-    
-    def number_of_likes(self):
-        return self.likes.count()
-    
-    # def add_exercise(self, excercise):
-    #     if self.excercise_set.count() >= 8:
-    #         raise Exception("Too many excercises on this workout")
-
-    #     self.excercise_set.add(excercise)
-
-    # def total_exercises(self):
-    #     return Exercise.objects.filter(parent_pk=self.pk).count()
         
 
 class Exercise(models.Model):
@@ -53,29 +36,10 @@ class Exercise(models.Model):
     exercise_muscle_group = CloudinaryField('image', default='placeholder')
     exercise_completed = models.BooleanField(default=False, editable=False)
 
-
     class Meta:
             ordering = ['exercise_number']
-
 
     def __str__(self):
         return f"{self.body} {self.title}"
 
 
-
-
-class Comment(models.Model):
-    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='comments', default="")
-    name = models.CharField(max_length=80)
-    email = models.EmailField()
-    body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
-    
-    
-    class Meta:
-        ordering = ['created_on']
-
-
-    def __str__(self):
-        return f"Comment {self.body} by {self.name}"

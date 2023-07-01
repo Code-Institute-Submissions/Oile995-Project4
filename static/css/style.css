@@ -1,3 +1,5 @@
+
+/* CSS Taken from Project 4 template at https://github.com/Code-Institute-Solutions/Django3blog */
 body {
     background-color: #F9FAFC;
 }
@@ -143,11 +145,8 @@ body {
 
 /*After template CSS below here, either homemade or reused from other exampel projects*/
 
-.selected{
-    background-color:yellow;
-}
 
-
+/* Base view and index */
 #hero-image{
     height: auto;
     width:100%;
@@ -169,8 +168,6 @@ body {
     width: 50%;
   }
 
-
-
 .nav-logo{
     background:url("../media/Workout-buddy.png") no-repeat center center;
     background-size: cover;
@@ -186,6 +183,12 @@ body {
     background-size: cover;
     position: relative;
   }
+
+/* Workout_details view */
+
+.selected{
+    background-color:yellow;
+}
 
 .exercise-label{
     font-weight: 600;
@@ -250,6 +253,7 @@ body {
     display:none
 }
 
+/* Form view css */
 input[type=text],
 textarea,
 input[type=number],
@@ -271,7 +275,6 @@ input[type=submit],
     margin-bottom: 1vw;
 }
 
-
 .form-label{
     text-align: center;
     display:block;
@@ -287,9 +290,11 @@ input[type=submit],
     font-weight: 900;
     border-radius: 25px;
 }
+
 #modules{
     background-color: white;
 }
+
 #delete-text{
     width: 40%;
     background-color: #E84610;
@@ -299,12 +304,21 @@ input[type=submit],
 #delete-text:hover {
     color: #FDF7FF;
 }
+
 .go-back{
     width: 40%;
     font-size:  1.5vmax;
     background-color: blue;
     color: white;
     text-decoration:none;
+}
+
+#form-error {
+    color: #FDF7FF !important;
+    background-color: #9B1700 !important;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
 }
 
 /* 404 & 500 PAGES */
@@ -322,12 +336,7 @@ input[type=submit],
 #image-404 {
     border-radius: 10px;
 }
-#form-error {
-    color: #FDF7FF !important;
-    background-color: #9B1700 !important;
-    width: 90%;
-    margin: 0 auto;
-    border-radius: 5px;
-}
+
+
 
 

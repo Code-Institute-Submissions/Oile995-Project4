@@ -3,17 +3,20 @@ from django.views import generic, View
 from .models import Workout, Exercise
 from .forms import WorkoutForm, ExerciseForm, WorkoutUpdateForm
 import datetime
-from django.db.models import F
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Display Profile page and the workouts made by User
 class Profile(View):
-
+    """
+    Function handle the display list view of all workouts
+    created by request user in user Profile page.
+    Base-code of function and logic taken from:
+    https://github.com/Code-Institute-Solutions/Django3blog
+    """
     def get(self, request, *args, **kwargs):
         queryset = Workout.objects.filter(creator = request.user)
-        print(queryset)
         paginate_by = 3
 
         return render(request,'profile.html',{"queryset": queryset,})
@@ -21,14 +24,24 @@ class Profile(View):
 # Display Workout list Homescreen and workout details
 
 class WorkoutList(generic.ListView):
-    # model = Workout
+    """
+    Function handle the display list view of all workouts
+    that are Apporoved by admin and in status Publish.
+    Base-code of function and logic taken from:
+    https://github.com/Code-Institute-Solutions/Django3blog
+    """
     queryset = Workout.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 3
 
 
 class WorkoutDetail(View):
-
+    """
+    Function handle the display detail view of all workouts
+    that are in Publish status.
+    Base-code of function and logic taken from:
+    https://github.com/Code-Institute-Solutions/Django3blog
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Workout.objects.filter(status=1)
         workout = get_object_or_404(queryset, slug=slug)
@@ -43,7 +56,12 @@ class WorkoutDetail(View):
             }
         )
 class MyWorkoutDetail(View):
-
+    """
+    Function handle the display detail view of all workouts
+    created by request user, regardless if draft or not.
+    Base-code of function and logic taken from:
+    https://github.com/Code-Institute-Solutions/Django3blog
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Workout.objects.filter(creator=request.user)
         workout = get_object_or_404(queryset, slug=slug)
@@ -61,6 +79,13 @@ class MyWorkoutDetail(View):
 #Create forms section   
 
 def WorkoutCreate(request):
+    """
+    Function handle the creating option of workout.
+    Create Workout form html renders.
+    User gets prompted to edit form.
+    Base-code of function and logic taken from:
+    https://github.com/leonardo-simeone/venezuelan-food-cookbook
+    """
     form = WorkoutForm()
     if request.method == 'POST':
         form = WorkoutForm(request.POST, request.FILES)
@@ -83,6 +108,13 @@ def WorkoutCreate(request):
 
 
 def WorkoutAddExercise(request, pk, e_n):
+    """
+    Function handle the adding option of exercise to workout.
+    Exercise form html renders for ammount of exercises
+    in parent workout. User gets prompted to edit form.
+    Base-code of function and logic taken from:
+    https://github.com/leonardo-simeone/venezuelan-food-cookbook
+    """
     e_n = int(e_n)
     workout = Workout.objects.get(id=pk)
     form = ExerciseForm()
@@ -108,7 +140,13 @@ def WorkoutAddExercise(request, pk, e_n):
 # Update forms section
 
 def updateWorkout(request, pk):
-    print("enter update w")
+    """
+    Function handle the update option of workout.
+    If user is eligible, edit workout form html renders.
+    User gets prompted to edit form.
+    Base-code of function and logic taken from:
+    https://github.com/leonardo-simeone/venezuelan-food-cookbook
+    """
     workout_object = Workout.objects.get(id=pk)
     if workout_object.creator == request.user or request.user.is_superuser:
         form = WorkoutUpdateForm(instance=workout_object)
@@ -131,6 +169,13 @@ def updateWorkout(request, pk):
     
 
 def updateExercise(request, pk, e_n):
+    """
+    Function handle the update option of exercise.
+    Edit exercise form html renders for ammount of exercises
+    in parent workout. User gets prompted to edit form.
+    Base-code of function and logic taken from:
+    https://github.com/leonardo-simeone/venezuelan-food-cookbook
+    """
     parent = Exercise.objects.filter(workout__id=pk).count()
     if e_n == "-1":
         return redirect('home')
@@ -138,12 +183,10 @@ def updateExercise(request, pk, e_n):
     if e_n > int(parent):
         e_n = int(parent)-1
     excercise_object = Exercise.objects.filter(workout__id=pk)
-    print(excercise_object)
     excercise_object= excercise_object[e_n]
     form = ExerciseForm(instance=excercise_object)
     if request.method == 'POST':
         form = ExerciseForm(request.POST, request.FILES, instance=excercise_object)
-        print(form.errors)
         if form.is_valid():
             form.save()
             messages.success(
@@ -158,6 +201,13 @@ def updateExercise(request, pk, e_n):
 # Delete forms view
 
 def deleteWorkout(request, pk):
+    """
+    Function handle the delete option of workout.
+    If user is eligible to delete, delete html renders
+    User gets prompted to delete or go back.
+    Base-code of function and logic taken from:
+    https://github.com/leonardo-simeone/venezuelan-food-cookbook
+    """
     workout = Workout.objects.get(id=pk)
     if workout.creator == request.user or request.user.is_superuser:
         if request.method == 'POST':
